@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled from "styled-components"
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
 
 export default function Headers() {
+    const[burgerstatus,setburgerstatus]=useState(false)
     return (
         <Container>
             <a>
@@ -19,10 +20,12 @@ export default function Headers() {
                 <a href="#">Shop</a>
                 <a href="#"> Tesla</a>
                 <a href="#"> account</a>
-                <CustomMenu/>
+                <CustomMenu  onClick={()=>setburgerstatus(true)}u/>
             </RightMenu>
-            <BurgerNav>
-                <CustomClosed/>
+            <BurgerNav show ={burgerstatus}>
+                <CloseWrapper>
+                    <CustomClosed onClick={()=>setburgerstatus(false)}/>
+                </CloseWrapper>
                 <li><a href="#">Model S</a></li>
                 <li><a href="#">Model 3</a></li>
                 <li><a href="#">Model x</a></li>
@@ -114,6 +117,7 @@ const BurgerNav = styled.div`
     display:flex;
     flex-direction:column;
     text-align: start;
+    transform:${props=> props.show ?  " translateX(0)":"translateX(100%)"};
     li{
     padding:15px;
     
@@ -124,4 +128,9 @@ const BurgerNav = styled.div`
     
 `
 
-const CustomClosed=styled(CloseIcon)``
+const CustomClosed = styled(CloseIcon)`
+cursor:pointer;`
+const CloseWrapper = styled.div`
+    display:flex;
+    justify-content: flex-end;
+`
