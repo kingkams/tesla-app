@@ -1,31 +1,36 @@
 import React from 'react'
 import styled from "styled-components"
+import Fade from 'react-reveal/Fade';
 
-export default function Section({ title,description,leftBtnText,rightBtnText,bgimage }) {
+export default function Section({title, description, leftBtnText, rightBtnText, bgimage}) {
     return (
         <Wrap background={bgimage}>
-            <ItemText>
-                <h1>{title}</h1>
-                <p>{description}</p>
+            <Fade bottom>
+                <ItemText>
+                    <h1>{title}</h1>
+                    <p>{description}</p>
 
-            </ItemText>
+                </ItemText>
+            </Fade>
             <Button>
-                <ButtonGroup>
-                    <LeftButton>{leftBtnText}</LeftButton>
-                    {rightBtnText  &&
-                        <RightButton>{rightBtnText}</RightButton>
-                    }
+                 <Fade bottom>
+                    <ButtonGroup>
+                        <LeftButton>{leftBtnText}</LeftButton>
+                        {rightBtnText &&
+                            <RightButton>{rightBtnText}</RightButton>
+                        }
 
-                    
 
-                </ButtonGroup>
-                <DownArrow src ="/images/down-arrow.svg"/>
+                    </ButtonGroup>
+                </Fade>
+                <DownArrow src="/images/down-arrow.svg"/>
             </Button>
-            
+
         </Wrap>
     )
 }
-const  Wrap  = styled.div`
+const Wrap = styled.div`
+    z-index:10;
     width: 100vw;
     height:100vh;
     background-size: cover;
@@ -41,15 +46,17 @@ const  Wrap  = styled.div`
 const ItemText = styled.div`
     padding-top:15vh;
     text-align:center;
+    z-index:-1;
     margin-bottom:30px;
 `
 
 const ButtonGroup = styled.div`
     display:flex;
     @media (max-width: 768px){
-        flex-direction:column;    }
+        flex-direction:column;   
+       }
 `
-const  LeftButton  = styled.div`
+const LeftButton = styled.div`
     background-color:  rgba(23, 26, 32, 0.8);
     height:40px;
     width:256px;
@@ -64,7 +71,7 @@ const  LeftButton  = styled.div`
     cursor:pointer;
     margin:20px
 `
-const  RightButton  = styled(LeftButton)`
+const RightButton = styled(LeftButton)`
     background:white  ;
     opacity :0.65;
     color : rgba(23, 26, 32, 0.8);
@@ -76,6 +83,6 @@ const DownArrow = styled.img`
     animation:animateDown infinite  1.5s;
 
 `
-const  Button  = styled.div``
+const Button = styled.div``
 
 
